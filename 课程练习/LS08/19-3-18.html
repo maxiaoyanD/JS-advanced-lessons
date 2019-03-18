@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //对象 instanceof 构造对象
+    //所有的对象instanceof Object结构都为true
+    //Math 、JSON不是函数不能实例化对象
+    //instanceof运算符用于测试构造函数的prototype属性是否出现在对象的原型链中的任何位置
+    //1、判断这个对象能否使用后面的构造函数实例化得到
+    //2、判断能否在对象的原型链上找到构造函数的prototype
+    function Person(username,age){
+        this.username = username;
+        this.age = age;
+    }
+    var person = new Person("zhangs",18);
+    person instanceof Person;//true
+    console.log(person);
+    //每个对象都有一个这个属性构成一个链
+    //__proto__: Object
+    console.log(person.__proto__ == Person.prototype);
+    //判断能否在person的原型链上找到Object构造函数的prototype
+    console.log(person instanceof Object);//true
+   
+    /**一下有问题**/
+    console.log(person.__proto__ == Object.prototype);
+    //person.__proto__ ===> Person.prototype
+    //person.__proto__.__proto__ ==> Person.prototype.__proto__
+    //Person.prototype.__proto__ ==> Object.prototype.__proto__
+    //console.log(Person.prototype.__proto__ == Object.__proto__)
+    /**以上待解决**/
+
+    /****************函数的属性**********************/
+    //arguments获取函数调用时传入的实参，类数组结构
+    function fn1(){
+        for(var i=0;i<arguments.length;i++){
+            console.log(arguments[i]);
+        }
+    }
+    fn1(15,5);
+    //函数名.length表示形参的个数
+    console.log(fn1.length);
+    //caller
+    function fn2(){
+        console.log(fn2.caller);
+    }
+    function fn3(){
+        fn2();
+    }
+    fn3();//返回的是fn3()函数
+    //callee:常用于匿名递归函数，递归的调用自身
+    var func = function(n){
+    if (n <= 0)
+        return 1;
+    else
+        return n * func(n - 1);
+        //return n * arguments.callee(n - 1);
+    };
+    console.log(func(4));
+    /*********************函数的方法*********************/
+    var objA = {"objName":"AAA"};
+    var objB = {"objName":"BBB"};
+    objA.foo = function(){
+        console.log(this.objName);
+    }
+    objA.foo();//AAA
+    //方法.call(对象):切换对象
+    objA.foo.call(objB);//BBB
+
+    function Per(username,age){
+        this.username = username;
+        this.age = age;
+        this,sayHi = function(){
+            console.log(this.username);
+        }
+    }
+    // Per.call(this,username);
+    //其具有一个指定的this值和分别提供的参数（参数的列表）
+    function Student(username,age,sex){
+        //方法.call()或方法.apply()方法会调用一次
+        Per.call(this,username,age);
+        //这里的this传到Per中
+        //Per.apply(this,[username,age])
+        this.sex = sex;
+    }
+   // var per = new Per("zhangsan");
+    var student = new Student("lisi",20,"女");
+    console.log(student);
+    //这里的username的赋值在Per中完成的
+
+
+    //bind
+    var objM = {
+        "name":"aaa",
+        "foo":function(){
+            console.log(this.name);
+        }
+    }
+    var objN = {"name":"nnn"};
+    var foo2 = objM.foo.bind(objN);
+    foo2();
+
+    var obj = {x:30};
+    function f1(){
+        function f2(){
+            console.log(this.x);
+        }
+        return f2;
+    }
+    obj.f3 = f1;
+    obj.f4 = f1();//f4赋值的是f1()执行的结果及f2函数
+    obj.f3();
+    obj.f4();//f4()执行的结果就是f2()执行的结果
+
+    //函数多层嵌套，this没有穿透
+    
+</script>
+</html>
