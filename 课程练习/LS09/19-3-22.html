@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //声明提升
+    //如果重复声明相当于覆盖的作用。
+    //1、变量提升：
+    //2、函数声明：
+    console.log(a);//undefined
+    if(true){
+        var a = 1;
+    }
+    console.log(a);//1
+    //该种情况时只会对变量进行定义的提升。
+   //同时有var和function关键字
+    foo();//报错
+    var  foo = function(){
+        console.log("foo");
+    }
+    //函数提升在变量提升的上面。
+
+    var a = 1;
+    function fn1(){
+        console.log(a);
+        var b=2;
+        var c= 3;
+        function fn2(){
+            var c = 30;
+            //c =  30;没有定义会向上层找定义，
+            //就是对上层的重新赋值
+            var d = 4;
+            console.log(c);
+        }
+        fn2();
+        console.log(c);
+        console.log(d);
+    }
+    fn2();//报错
+    //fn2()的作用域尽在fn1里
+//   ======》
+    function fn1(){
+        function fn2(){
+            var d;
+            d=4;
+            c=30;
+        }
+        var b;
+        var c; 
+        b=2;
+        c= 3;
+    }
+
+    //词法作用域
+    //变量完成定义，作用域便确定，与其在哪里调用没有关系
+    //定义时静态的
+    var username = "jack";
+    function foo(){
+        console.log(username);//jack
+    }
+    //到此username完成定义所以var username作用域到此
+    function bar (){
+        //这里的username在当前作用域起作用
+        var username = "mike";
+        foo();//这里是调用
+        console.log(username);//mike
+    }
+    //new function 不遵循 静态词法作用域
+    bar();
+
+    //ES5采用函数级作用域没有块级作用域
+    var userId =  5;
+    document.onclick = function(){
+        console.log(userId);
+        userId = 10;
+    };
+    // 一大段代码
+    /*
+    if(true){
+        var userId = 30;
+    }//结果为30（变量污染）
+    */
+    // 函数的立即执行
+    (function(){
+        if(true){
+            var userId = 30;//此时的userId不会对前面输出的userId有影响
+        }
+    })()
+
+
+    //执行上下文和调用栈
+     // 上下文，当某行代码执行过程中，它的上下文环境
+    // 当前作用域包含了变量，函数调用栈，this指向
+    var x = 5;
+    var y = 6;
+    function fn(){
+        var a = 1;
+        var b=2;
+        function bar (){
+            var c = 3;
+            var d = 4;
+        }
+        bar();
+    }
+    fn();
+</script>
+</html>

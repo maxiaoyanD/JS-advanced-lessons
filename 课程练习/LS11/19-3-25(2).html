@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IIFE</title>
+</head>
+<body> 
+</body>
+<script>
+    //IIFE：立即执行的函数表达式
+
+    //(function 函数名(参数){
+        //函数体
+    //}(实参));
+    (function max(){
+        return x>y?x:y;
+    }(2,3));
+
+    (function min(x,y){
+        return x>b?x:y;
+    })(2,3);
+
+    //IIFE解决JS缺陷
+    var userId = 2;
+    document.onclick = function(){
+        alert(userId);
+    }
+    // if(true){
+    //     var userId = 20;
+    //     //ES5内没有块作用域所以这里的变量会污染上面的userId
+    // }
+    //ES5要想变量不污染，可以形成一个新的作用域
+    (function(){
+        if(true){
+            userId = 20;
+        }
+    })
+    //通过IIFE对变量存储的改变
+    function foo(){
+        var arr1 = [];
+        for(var i = 0;i<10;i++){
+            arr1[i] = function(){
+                return i;
+            }
+            //arr[i]中存储的都是i,整个循环结束，所有的i值都是10
+            //arr[i]存的是一个函数
+        }
+        return arr1;
+    }
+    var arr2 = foo();
+    arr2[0]();
+    
+    //解除上述出现的问题。将arr[i]存储的函数变为立即执行
+    function foo(){
+        var arr1 = [];
+        for(var i = 0;i<10;i++){
+            // arr1[i] = (function(j){
+            //     return j;
+            // }(i));
+            //形成10个作用域（因为有10个匿名函数），作用域内的j值不同，并且不会共享
+            (function(j){
+                arr1[j] = function(){
+                    return j;
+                }
+            })(i)
+        }
+        return arr1;
+    }
+    var arr2 = foo();
+    arr2[0]();
+
+    //1.立即执行函数表达式
+    //2.避免变量的污染，形成一个独立的空间，变量仅在该作用域起作用
+</script>
+</html>
