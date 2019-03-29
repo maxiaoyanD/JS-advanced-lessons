@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function f(){
+        var arr = [];
+        for(var i=0;i<10;i++){
+            arr[i] = function(){
+                return i;
+            }
+        }
+        // for循环等价于
+        // arr[0] = function(){
+        //     return i;
+        // }
+        // arr[1] = function(){
+        //     return i;
+        // }
+        // ......
+        // arr[9] = function(){
+        //     return i;
+        // }
+        //都还未执行，执行的时候i都是9
+        //所以arr[0]和arr[9]都是最后的值
+
+        //立即执行函数
+        for(var i=0;i<10;i++){
+            (function(j){
+                arr[j] = function(){
+                return j;
+                }
+            })(i);
+            //每次循环都会生成一个自己作用域，作用域仅在自己内起作用
+            //并且作用域内的函数立即执行
+        }
+        return arr;
+    }
+    f();
+
+    (function(w,d){
+        d.getElementById();
+    })(window,document)
+    //用匿名函数避免变量污染
+    for(var i=0;i<3;i++){
+        (function(j){
+            setTimeout(function(){
+                 console.log(new Date(),j);
+            },j*1000);
+        })(i);    
+    }
+
+    //闭包
+    /*function fn1(){
+        var x = 1;
+        function fn2(){
+            return ++x;
+        }
+        return fn2();
+    }
+    fn1();//2*/
+
+   
+    
+    
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+    /**********赋值运算符************************/
+    // = 与 ==
+    var a=43;
+    if(a=45){
+        console.log("hi");
+    }//  hi
+    //==判断先进行隐式转换
+    //===先判断类型，后判断值
+    var a1=20;
+    var a2="20";
+    if(a1==a2){
+        console.log("hhh");
+    }
+    if(a1===a2){
+        console.log("lll");
+    }
+
+/*****************算数运算符******************************/
+    true + true; //2
+    //注意：++ 和 -- 是隐式类型转换
+    var x = "1"; 
+    //++x先进行++运算再输出
+    //x++先进行输出操作再进行++运算
+    console.log(++x);//2,
+    console.log(x++);//1
+    //字符串 += 进行的是拼接
+    var a = "5";
+    console.log(a+=5);//"55"
+/**************关系运算符******************************/
+    // == 与 ===
+    3 === 3; //true
+    NaN === NaN ;//false
+   // {}==={}; //false
+
+</script>
+</html>

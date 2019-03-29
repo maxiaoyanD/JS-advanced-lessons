@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //变量的定义会被解释器进行变量提升，可以将声明提到函数之前
+    sum(1,2);
+    function sum(x,y){
+        return x+y;
+    }
+    
+    //把函数存在变量上不可以将调用放在函数之上
+    var sum1 = function(x,y){
+        return x+y;
+    }
+    sum1(1,2);
+    window.onload = function(){
+        alert("页面加载完成！")
+        alert("这是一个匿名函数")
+    }
+    //使用构造函数实例化得到一个function
+    //function 实例化函数，执行效率相对较低，但是更加灵活
+    // var fn1 = new function('x','y','return x+y');
+    // fn1(4,5);
+
+
+    //四种调用方式
+    //1-作为函数直接调用
+    //（非严格模式下this为全局对象，严格模式下为undefined） 
+    function test(){
+        console.log(this);
+    }
+    test();//这里的this指的是window
+
+
+    //2-作为方法调用（this为调用方法的对象）
+    var obj ={
+        x:0,
+        test:function(){
+            console.log(this.x);
+        }
+    };
+    obj.test();//0
+
+
+    //3通过call()和aplly()间接调用
+    //(this为函数对象的call/apply方法的首个参数，移花接木)
+    objA = {"name":"AA"};
+    objB = {"name":"BB"};
+    objA.foo = function(){
+        console.log(this.name);
+    }
+    objA.foo();//AA
+    //方法名.call()可以切换调用的对象
+    objA.foo.call(objB);//BB
+    objA.foo.apply(objB);//BB
+
+    //作为构造函数调用（this指向实例化对象）
+    //构造函数的函数名要大写
+    function Person(name){
+        this.name = name;
+    }
+    Person.prototype.sayHi = function(){
+        console.log("hi" + this.name);
+    }
+    var person = new Person("mamama");
+    person.sayHi();
+    console.log(person.__proto__ === Person.prototype);
+
+    //函数参数的数量问题
+    //实参数量 > 形参 通过函数对象的属性arguments获得所有实参、类数组对象
+    //实参数量 < 形参 少的参数值为undefined、可使用||来给出默认值）
+    
+    function test(){
+        var s ="";
+        //arguments:获取传入的实参是个类数组类型
+        for(var i=0;i<arguments.length;i++){
+            s += arguments[i];
+        }
+        return s;
+    }
+    test("hello"," ","world");// "hello world"
+
+
+    //参数类型与传递方式（值、引用）
+    //--实参为基本数据类型时，参数改变不影响实参（值传递）
+    var a= 1;
+    function foo(x){
+        x = 2;
+        console.log(a,x);
+    }
+    foo(a);
+    console.log(a);
+    //实参为引用类型时，形参改变影响实参（引用传递）
+    var oobj ={x:0};//栈区存地址引用，堆区存对象
+    function fee(o){
+        o.x = 3;
+        console.log(oobj.x,o.x);
+    }
+    fee(oobj);
+    console.log("obj.x:",obj.x);
+    //定义一个函数完成对变量的复制过程，生成新的变量，并返回
+    //引用类型时，数组，对象
+    
+    function copy(arg1){
+        var copy;
+        switch(true){
+            case (arg1 instanceof String || Number || Boolean):
+                copy = arg1;
+                break;
+            // case (arg1 instanceof Number):
+            //     copy = arg1;
+            //     break;
+            // case (arg1 instanceof Boolean):
+            //     copy = arg1;
+            //     break;
+            case (arg1 instanceof Array):
+                copy = [];
+                for(var i=0;i<arg1.length;i++){
+                    copy[i] = arg1[i];
+                }  
+                break;
+            case (arg1 instanceof Object):
+                copy = {};
+                for(var i=0;i<arguments.length;i++){
+                    
+                }
+        }
+    }
+    var objj ={"username":"zhangsan","age":18};
+    copy(objj);
+</script>
+</html>

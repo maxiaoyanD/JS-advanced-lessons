@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>h5</title>
+	</head>
+	<body>
+		<script>
+			/***********************Number进阶***********************/
+			var num = 10;
+			num.toString();
+
+			var num = 10;
+			var numObject = new Number(num);
+			numObject.toString();
+			num.p = 10;
+			var t=num.p;
+			console.log(t);//undefinded
+
+			//toFixed(x):保留x位小数
+			var num1 = 11.29;
+			var numobj2 = new Number(num1);
+			console.log(numobj2);
+			num1.toFixed(1);//11.29
+			//toPrecision(x):转换为指数
+			var n1 = 12345.6789;
+			console.log(n1.toPrecision(2));
+			//toString():转换为字符串
+
+			//基本数据类型的__proto__属属性
+			// ==（和）
+			//变量构造函数的prototype是相等的
+			var n = 20;
+			console.log(n.__proto__);
+			console.log(n.prototype);
+
+			/**************************String进阶************************/
+			//charAt(index):返回特定索引的字符
+			var str = "abc";
+			str.charAt(2);
+			var strObject = new String(str);
+			strObject.charAt(2);
+
+			//A.localeCompare(B):字符串比较
+			'b'.localeCompare('a')//1
+
+			//String.fromCharCode(97,98,99)：将数字转换为字符
+			String.fromCharCode(97,98,99);//"abc"
+
+			/*********字符串原型方法之提取字符串***********/
+			var str1 = "abcdjhfe";
+			//str.charAT(index)：返回特定索引位置的字符
+			console.log(str1.charAT位置的字符的Unicode码(3));//d
+			//str.charCodeAt(index):返回特定索引
+			console.log(str1.charCodeAt(3));
+			//slice(起始位置，截止位置)：截取从起始位置到截止位置-1
+			console.log(str1.slice(0,3));
+			str1.slice(1,-1)
+			//substr(截取的起始位置,截取字符串的长度):
+			str1.substr(0,3);
+			str1.substr(0,-1);//""
+			//substring(截取起始位置，截取截止位置):截止位置可不写
+			//如果sunstring起始位置>结束位置会自动交换位置substring(3,0)
+			//substring(0,-1)和slice(0,-1)是不一样的
+			//如果超出索引范围自动截断substring(-1,3)
+			str1.substring(0,3);
+			//split(特定的字符,(长度)):以特定的字符分割成数组,长度可选可不选
+			var str2 ="a*c*g/h*f";
+			str2.split("*");
+			str2.split("*",2);
+
+			/*********字符串原型方法之字符串变换***********/
+			var ss = "     abc  d     "
+			//trim():去除字符串两边的空格，字符串内部的空格不去除
+			ss.trim();//"abc  d"
+			//concat(str1,str2):将字符串拼接起来
+			var str3 = "hello ";
+			str3.concat("world");//"hello world"
+			//
+			/*********字符串原型方法之检索和比较***********/
+			//str.indexOf(stringValue):返回查找字在被查找字符串中初次出现的位置，
+			//如果不存在则返回-1
+			var str4="你好吗好好";
+			var str5="哈哈哈哈或 '你好吗好好'很啦"
+			str4.indexOf("好");//1
+			//str.lastIndexOf(stringValue):返回最后出现的位置
+			//如果不存在返回-1
+			str4.lastIndexOf("好");//4
+			//"a".localeCompare('b'):判断a是否在b之前
+			//如果是返回整数，不是返回负数
+			str4.localeCompare('啦');
+			/******************z字符串原型方法之可正法则***************/
+			//str.search():
+		</script>
+	</body>
+</html>

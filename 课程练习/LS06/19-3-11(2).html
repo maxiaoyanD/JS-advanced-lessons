@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //&& 与 ||
+    /*如果原操作数是数值类型：
+        进行&&操作，如果左操作数是真的返回右操作数（左真右）
+        如果左操作数是假的，返回左操作数（左假左）
+        进行||操作时，如果左操作数为真则返回左操作数（左真左）
+        如果左操作数为假，返回右操作数（左假右）
+        */
+    //对象转换为布尔类型全为真；空对象转换为布尔类型也是真
+    var source = 76;
+    console.log((source>90 && "优") || (source>75 && "良") || (source>60 && "及格") || "不及格");
+    //switch 和 case进行的是全等判等，值和类型都要相等
+    switch(true){
+        case source>90:
+            console.log("优");
+            break;
+        case source>75:
+            console.log("良");
+            break;
+        case source>60:
+            console.log("及格");
+            break;
+        default:
+            console.log("不及格");
+            break;
+    }
+
+    //定义函数的形参与调用的函数的实参个数可以不一致
+    //ES5中实现默认的过程
+    function sum(x,y,z){
+        //console.log(x,y,z)//undefined undefined undefined
+        x = x || 1;
+        y = y || 2;
+        z = z || 3;
+        return x+y+z;
+    }
+    console.log(sum(4,5,6));
+    //ES6中设置函数默认值
+    function sum1(x,y=2,z=3){
+        return x+y+z;
+    }
+    console.log(sum1(1));
+</script>
+</html>

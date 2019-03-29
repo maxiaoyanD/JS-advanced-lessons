@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //闭包
+    /*闭包：
+        函数通过返回函数（fn1）内部定义的函数（fn2）来访问fn1
+        内部的局部变量（x）
+    */
+    //访问fn1内部变量x,借助fn1内部定义的函数fn2来访问内部变量
+    function fn1(){
+        var x = 1;
+        function fn2(){
+            return ++x;
+        }
+        return fn2;
+    }
+    var fn3 = fn1();//得到fn2函数
+    console.log(fn3());//2
+    console.log(fn3());//3
+
+    //函数（addNum）内部定义的函数（return 匿名函数）
+    //与其相关作用域中的变量（start）形成的实体
+    //start会一直保存在内存中不会被释放
+    function addNum(start){
+        //start会一直保留在内存当中，因为有闭包的存在不会释放
+        return function(step){
+            start  += step;
+            return start;
+        }
+    }
+    var fn3 = addNum(10);
+    console.log(fn3(1));
+    console.log(fn3(1));
+    console.log(fn3(1));
+
+    /**闭包带来的影响
+     * 1、闭包可以让我们访问到函数内部定义的变量
+     * 2、闭包让关联作用域中的变量保持在内存中，不释放
+     * 
+    **/
+    function foo(){
+        var i = 0;
+        function bar(){
+            console.log(++i);
+        }
+        return bar;
+    }
+    var fn1 = foo();
+    var fn2 = foo();
+    fn1();//1
+    fn1();//2
+    fn2();//1
+    fn1();//3
+
+    var tmp = 100;
+    function foo(x){
+        var tmp = 3;
+        return function(y){
+            console.log(x+y+(++tmp));
+        }
+    }
+    var fee = foo(2);
+    fee(10);
+    fee(10);
+    fee(10);
+
+</script>
+</html>
