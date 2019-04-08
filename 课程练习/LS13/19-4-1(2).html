@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //JS对象综述
+    /**
+     * 对象 instanceof 构造函数
+     * 1、判断对象能否使用该构造函数实例化得到
+     * 2、判断对象的原型链上能够找到该构造函数的原型
+     * 对象.proto__.__proto__（长度不确定） == 构造函数.prototype
+     */
+    console.log(Object instanceof Function);
+    console.log(Object.__proto__ == Function.prototype);
+
+    //任何对象instanceof Object都是true，因为Object是所有对象的原型
+    console.log(Object instanceof Object);
+    console.log(Object.__proto.__.__proto.__ == Object.prototype);
+
+    function Person(username,age){
+        this.uaername = username;
+        this.age = age;
+    }
+    var p = new Person("zhangsan",200);
+    console.log(p.__proto.__ == Person.prototype);
+//只有构造函数才有prototype属性（原型）
+    //Person ---> Person.prototype ---> Person.prototype.__proto.__
+
+    //对象的属性
+    //访问器属性
+    var o = {
+        _x:1,
+        get x(){
+            return this._x;
+        },
+        set x(val){
+            this._x = val;
+        }
+    };
+    console.log(o.x);//1
+    o.x = 2;
+    console.log(o.x,o._x);// 2 2
+
+    
+</script>
+</html>
