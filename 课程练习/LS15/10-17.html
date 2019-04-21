@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    10-17ppt总结
+</body>
+<script>
+    //1、立即执行
+    /*
+        某些场景实现独立作用域，并且立即执行
+        解决：
+            1、防止变量污染
+            (function(){
+                用于某些效果只执行一次
+             })()
+            2、防止变量的非期望共享
+            for(var i=0;i<10;i++){
+                //1、给元素绑定事件，回调函数
+                //2、延迟执行、定时执行
+                (function(j){
+                    每次循环形成一个独立的作用域，
+                    作用域之间不会相互影响
+                })(i)
+            }
+    */
+    
+ 
+    //2、闭包 JavaScript中存在的运行机制
+    /*
+        外层函数fn1、内层函数fn2
+        内层函数调用外层函数的变量，并且返回内层函数
+        作用域内部的变量不会被释放
+        function fn1(){
+            var x=0;
+            function fn2(){
+                return ++x;
+            }
+            return fn2
+        }
+        var result = fn1();
+        result();//1
+        result();//2
+    */
+
+    //3、对象
+</script>
+</html>

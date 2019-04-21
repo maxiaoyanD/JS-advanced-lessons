@@ -14,8 +14,8 @@
     /**
      * 对象 instanceof 构造函数
      * 1、判断对象能否使用该构造函数实例化得到
-     * 2、判断对象的原型链上能够找到该构造函数的原型
-     * 对象.proto__.__proto__（长度不确定） == 构造函数.prototype
+     * 2、判断对象的原型链上能否找到该构造函数的原型
+     * 对象.__proto__.__proto__（长度不确定） == 构造函数.prototype
      */
     console.log(Object instanceof Function);
     console.log(Object.__proto__ == Function.prototype);

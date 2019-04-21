@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var obj = {x:0};
+    Object.defineProperty(obj,'y',{
+        value:1,
+        enumerable:true,
+        configurable:true,
+        writable:true
+    })
+    Object.prototype //站在对象的最顶端。所有的object.prototype都是true
+//属性特性描述符
+    //获取特点对象，特定属性的属性描述符
+    Object.getOwnPropertyDescriptor(obj,'y');
+
+    //给多个属性设置特性
+    var exol ={exol:0805}
+    Object.defineProperties(exol,{
+        e:{value:0,writable:true,configurable:true,enumerable:true},
+        x:{value:4,writable:true,enumerable:true},
+        o:{value:08,writable:true,enumerable:true}
+    });
+    //关于对象属性特性的继承
+    var o1 ={};
+    Object.defineProperty(o1,'x',{
+        value:04,
+        writable:true
+    });
+    //以o1为原型生成一个o2新对象
+    var o2 = Object.create(o1);
+    //o2.__proto__和o1是完全相同的对象的引用
+    //改其中一个，另一个也就变化
+    console.log(o2.__proto__ == o1);//true
+    console.log(o2.x);//4
+    //delete删除属性，只能删除自身所具有的属性
+    delete o2.x;
+    console.log(o2.x);//4
+
+    o2.__proto__.x =3;
+    console.log(o2.x);//3
+    console.log(o1.x);//3
+</script>
+</html>

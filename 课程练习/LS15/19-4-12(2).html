@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    JS对象及继承方式综述
+</body>
+<script>
+    /*
+        JavaScript是基于对象的继承方式
+        1、
+    */
+   var obj = {
+       num:1,
+       str:'hi',
+       sayHi:function(){
+           console.log(this.str);
+       }
+   };
+   var newObj = Object.create(obj);
+   console.log(newObj.__proto__ ==obj);
+   console.log(newObj.num);
+   newObj.sayHi();
+
+   var obj = {x:3};
+   /*
+    obj.__proto__ == Object.prototype
+   obj.__proto__.__ptoto__ == null
+    Object.prototype.__proto__ == null
+   */
+   console.log(obj.__proto__ == Object.prototype);//true
+   console.log(obj.__proto__.__ptoto__)
+
+   var obj1 = {x:8};
+   var obj2 = Object.create(obj1);
+   console.log(obj2.__proto__);//obj1
+   console.log(obj2.__proto__.__proto__);//obj1.prototype
+   console.log(obj2.__proto__.__proto__.__proto__);//null
+
+</script>
+</html>
