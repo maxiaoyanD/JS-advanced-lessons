@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    JS中的this
+</body>
+<script>
+    /*不管哪种场景下调用，this指向的都是调用此函数的主体*/
+    //一、一般函数中的this
+        //1、严格模式下this指undefined
+        //2、非严格模式下this是windows
+        //3、this是谁，取决于函数调用的主体
+        var x = 10;
+        console.log(window.x);
+        //非严格模式下，this指向window对象
+        function thisTest(){    
+            console.log(this);
+            console.log(this == window);//判断是否是严格模式
+
+        }
+        thisTest();
+        //严格模式
+        function thisTest1(){
+            'use strict';
+            console.log(this);
+            console.log(this == window);
+        }
+        thisTest1();
+    //二、对象方法中的this
+        //1、直接定义在对象下的方法，调用主体是当前对象，
+        //   this指向也是当前对象。前提没有函数的嵌套。
+        var point = {
+            x:0,
+            y:0,
+            //无嵌套情况
+            moveTo: function(x,y){
+                this.x = x;//这里的this指代point
+                this.y = y;
+            }
+        };
+        point.moveTo(5,8);
+    //三、构造函数中的this
+        function Point(x,y){
+            this.x = x;
+            this.y = y;
+            this.moveTo = function(){
+                //this指向p
+                this.x = x;
+                this.y = y;
+            }
+        }
+        var  p =new Point(1,1);
+        //1、this指向函数调用的主体
+        p.moveTo(15,15);
+        console.log(p);//x:1,y:1
+    //四、间接调用中的this
+        //方法A.call(对象)
+        //切换方法A的调用主体。this的指向函数的调用主体
+        //call(要切换的调用对象，arg1,arg2);
+
+        //方法B.apply(要切换的调用对象,[arg1,arg2,arg3]);
+
+        var objA = {name:"AA",x:1};
+        var objB = {name:"BB",x:2};
+        function test(){
+            console.log(this.name,this.x);
+        }
+        objA.fun = test;
+        objA.fun();
+        objA.fun.call(objB,3);
+    
+
+    //this 缺陷
+    //1、对象方法中的this，有嵌套的情况
+    /*对象内部的函数，在嵌套的情况下，内部函数的this指向window对象*/
+    var point = {
+        x:0,
+        y:0,
+        moveTo : function(x,y){
+            function moveToX(x){
+                console.log(this);//window
+                this.x = x;
+            };
+            function moveToY(y){
+                console.log(this);//window                
+                this.y = y;
+            };
+            moveToX(x);
+            moveToY(y);
+        }
+    }
+    point.moveTo(5,5);
+    console.log(point);//x:0,y:0
+    //解决方案1、转存this
+    var point = {
+        x:0,
+        y:0,
+        moveTo : function(x,y){
+            //解决方案将this转存（软绑定）
+            var that = this;//这里的this指向是point
+            function moveToX(x){
+                console.log(this);//window
+                that.x = x;
+            };
+            function moveToY(y){
+                console.log(this);//window                
+                that.y = y;
+            };
+            moveToX(x);
+            moveToY(y);
+        }
+    }
+    point.moveTo(5,5);
+    console.log(point);//x:0,y:0
+    //解决方法2、调用call或apply
+    var point = {
+        x:0,
+        y:0,
+        moveTo:function(x,y){
+            function moveToX(x){
+                this.x = x;
+            };
+            function moveToY(y){
+                this.y = y;
+            }
+            //切换moveToX，Y函数的调用主体，并且执行
+            moveToX.call(point,x);//this,x
+            moveToY.call(point,y);//this,y
+        }
+    }
+    point.moveTo(5,5);
+    console.log(point);
+    //解决方法3、使用Function.prototype.bind
+    var point = {
+        x:0,
+        y:0,
+        moveTo:function(x,y){
+            function moveToX(x){
+                this.x = x;
+            };
+            function moveToY(y){
+                this.y = y;
+            }
+           //moveToX.__proto__ == Function.prototype
+           /*
+                函数.bind(对象) 切换函数的调用主体
+                生成一个新的函数，并且不会立即执行的
+           */ 
+           moveToX.bind(point)();
+           moveToY.bind(this)();
+            console.log(moveToX.bind(this));
+        }
+    }
+    point.moveTo(5,5);
+    console.log(point);
+    console.log(Function.prototype);
+    //只有构造函数才有prototype？？？？？
+</script>
+</html>

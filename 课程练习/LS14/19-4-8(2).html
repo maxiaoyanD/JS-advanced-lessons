@@ -18,7 +18,7 @@
     console.log(obj.x,obj.y,obj.z);
     console.log(obj.toString);
     console.log(obj);
-    console.log(obj.__proto.__ == objProto);
+    console.log(obj.__proto__ == objProto);
     //对象里面的某些属性和方法是没有办法遍历出来的
     for(var i in obj){
         console.log(i,obj[i]);
@@ -32,7 +32,7 @@
     }
     //设置属性特性及其设置
     var person = {name:'jack'};
-    Object.defineProperyr(person,'name',{
+    Object.defineProperty(person,'name',{
         //是否可修改，name属性是不可修改的
         writable:false,
         //是否可配置，定义的属性能否被删除
