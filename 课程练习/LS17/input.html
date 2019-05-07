@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单验证</title>
+</head>
+<body>
+    <input type = "text" class="forminput" id="username"/>
+</body>
+<script>
+    (function(w,d){
+        /*
+            构造函数，构造函数会有配置的参数
+        */
+        function inputIdentify(inputId){
+            this._init(inputId);
+            this._effect();
+        }
+        inputIdentify.prototype._init = function(inputId){
+            var inputObject = d.getElementById(inputId);//????
+            console.log(inputObject);
+            this.inputObject = inputObject;
+        } 
+        inputIdentify.prototype._effect = function(){
+            this.inputObject.onblur = function(){
+                console.log("失去焦点！");
+            }
+            this.inputObject.onfocus = function(){
+                console.log("获得焦点！");
+            }
+        }
+        w.inputIdentify = inputIdentify;//添加到全局变量中
+    }(window,document))
+    var input  = new inputIdentify("username");//这里为什么只能是username
+</script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    正则表达式
+</body>
+<script>
+    //1、通过字面量直接创建
+    var reg = /[bcf]at/gi;
+    console.log(reg);
+    //2、通过RegExp构造函数来实例化对象
+    var reg2 = new RegExp(/[bcf]at/,'gi');
+    var reg3 = new RegExp('[bcf]at','gi');
+    
+    console.log("a fAt bat ,a faT cat".match(reg));
+    //["fAt", "bat", "faT", "cat"]
+
+    
+</script>
+</html>

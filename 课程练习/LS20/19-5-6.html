@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        /正则表达式的文本部分/正则表达式的标识符
+        [xyz]匹配中括号中的任意字符
+        标识符：
+            g表示是否全局检索,获取的所以普匹配还是没有g只获取第一个
+            i表示是否忽略大小写（i是忽略）
+    */
+    
+    var reg1 = /[bcf]at/gi; 
+    var reg2 = new RegExp(/[bcf]at/,"gi");
+    var reg3 = new RegExp('[bcf]at','gi');
+    var str ="fat cat bat Fat ojiidd lppqw";
+    var arr = str.match(reg1);
+    console.log(arr);
+    
+    var reg1 = /adf/gi;//要完全匹配才会出现结果
+    var str = "abcdef adf kil";
+    console.log(str.match(reg1));//adf 要完全匹配才会出现结果
+
+    // * 字符出现次数可以是0次也可以是多次
+    var str = "abcdef adf kil ad";
+    var reg2 = /adf*/gi;
+    console.log(str.match(reg2));//adf ad
+
+    // . 匹配任意的单个字符,表示任意字符
+    var str = "abcdef adf kil ad";
+    var reg3 = /a.c/gi;
+    console.log(str.match(reg3));//abc
+
+    /*
+    字符类别：
+        \d：表示的是任意的阿拉伯数字（也就是匹配的0-9的任意一个数字）
+        \D：表示在特定位置上不是一个阿拉伯数字
+    */
+   var str1 = "a2c a9c adc";
+   var reg4 = /a\dc/gi
+   var reg4_2 = /a\Dc/gi 
+   console.log(str1.match(reg4));//a2c a9c
+   console.log(str1.match(reg4_2));//abc
+
+    /*
+        [xyz]:从中括号的字符集合当中取任意一个字符
+        [^xyz]:排除字符集合中的字符
+    */
+    var reg = /[^abc]/gi;
+    var str ="abchf abk dgac";
+    console.log(str.match(reg));//
+
+    /*
+        ^x匹配开始位置,只能匹配出一个
+        x$匹配结束位置。
+    */
+    var reg1 = /^a[0-9]/gi;
+    var str1 = "a1 b2 c3 a4";
+    console.log(str1.match(reg1));//a1
+    /*
+        reg.test(str)满足结果返回为true，不满足为false
+        test定义在正则表达式上。
+    */
+    var reg2 =/[0-9]z$/gi;
+    var str2 = "abcd9z";
+    var str2_2 = "abcdfff9";
+    reg2.test(str2);
+    reg2.test(str2_2);
+    
+    console.log(str2.match(reg2));//9z
+    console.log(str2_2.match(reg2));//null
+
+    /*
+        str.replace(reg,"xx") xx替换正则表达式匹配的内容
+    */
+    var str ="adfha fg";
+    console.log(str.replace(/a\Df/gi,"*"));//*h*g
+    /*
+        数量词：
+            x?：表示之前的字符出现0次或者1次
+            x+：表示之前的字符出现1次或多次
+            x{m,n}:m最小出现次数，n最多出现次数
+    */
+    var reg1 = /abc?/gi;
+    var str1 = "abc ab kkk";
+    str1.replace(reg1,"x");// x x kkk
+
+    var reg2 = /abc+/gi
+    var str2 ="abc abcccccc abcccccccccc ab";
+    str2.replace(reg2,"x");//x x x ab
+
+    var reg3 = /abc{1,3}/gi;
+    var str3 = "ab abc abcc abccc abcccc";
+    str3.replace(reg3,"x");//ab x x x xc
+</script>
+</html>

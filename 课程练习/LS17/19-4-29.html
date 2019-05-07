@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //静态方法：Object.create() --直接定义在构造函数之上，
+            //只能构造函数.调用
+    //原型方法：实例化对象的原型的方法，定义在原型链上
+    function BaseClass(){
+
+    }
+    BaseClass.fn1 = function(){
+        console.log("这是一个静态方法！");
+    };
+    BaseClass.fn1();
+
+    BaseClass.prototype.fn2 = function(){
+        console.log("原型方法！");
+    };
+   var base = new BaseClass();
+    console.log(base.__proto__ == BaseClass.prototype);
+    //base可以调用的方法在BaseClass的prototype上
+
+    base.fn1();//会报错，fn1定义在BaseClass上
+    base.fn2();//原型方法！
+
+    //constructor属性
+    function Person(username,age){
+        this.username = username;
+        this.age = age;
+    }
+    Person.prototype.constructor == Person;
+    var p = new Person("zz",55);
+    p.constructor == Person;/*为什么呀呀呀呀呀*/
+
+    var obj = new Object();
+    obj.constructor == Object;
+
+
+    
+</script>
+</html>
