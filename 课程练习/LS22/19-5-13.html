@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Math、JSON
+    <ul id="list">
+
+    </ul>
+</body>
+<script>
+    /*
+         Math.random();
+        返回一个浮点数，范围为[0,1)
+    */
+    var json = '{}';
+    /*
+        JSON 字符串可以和js对象进行相互转换
+        并且js对象可以很容易的渲染到页面上
+        所以可以将从后台获取到的json数据转换为jsduix
+        并在页面中渲染
+    */
+    var jsObject = {"username":"zhangsan","age":20};
+    var ulObject = document.getElementById("list");
+    for(var i in jsObject){
+        var liNode = document.createElement("li");
+        liNode.innerHTML = i +" " + jsObject[i];
+        ulObject.appendChild(liNode);
+    }
+    
+    /*
+        JSON.stringify(js对象)
+        可以将js数组、结构转化为json字符串
+    */
+    /***************{} ()*/
+    var jsObject={
+        "username":"zhangs",
+        "age":20,
+        "address":{"add":"石家庄","addcode":"11322"}
+    };
+    var jsonStr = JSON.stringify(jsObject);
+    /*过滤掉一些属性*/
+    var jsonStr = JSON.stringify(jsObject,function(k,v){
+        if(typeof v =='number'){
+            return undefined;
+        }
+        return v;
+    })
+    console.log(jsonStr);
+    console.log(typeof jsonStr);//string
+
+    var jsObject2 = JSON.parse(jsonStr);
+    console.log(jsObject2);
+    console.log(typeof jsObject2);//object
+    var jsObject3 = JSON.parse(jsonStr,function(k,v){
+            console.log(k,v);
+        })
+    /*
+        data.json
+    */
+</script>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    正则表达式
+</body>
+<script>
+    /*
+        \d 数字
+        \s 空格
+        .  任意的一个字符
+        \w [A-Za-z0-9]
+    */
+    var reg = /\d.\s/gi;
+    /*
+        [abc] 匹配中括号的其中一个
+        [^abc]匹配排除中括号内的其他的
+    */
+    var reg=/[xyz]a/gi;
+    var str="xabjdya"
+    str.replace(reg,"m");
+
+    /*
+        ^a 以特定的字符起始
+        b$ 以特定的字符结束
+    */
+
+    /*
+        x* 出现0次或多次
+        x+ 出现1次或多次
+        x? 出现0次或1次
+    */
+
+    /*
+        分组可以看作当前正则表达式的子规则，
+        分组匹配得到的内容，可以在exec方法调用
+        的返回结果中查看
+    */
+    //(xyz)表示组合取其中所有才能匹配
+    var reg1 = /(abc)\d(agc\d)\d/gi;
+    var str = "abc1agc25";
+    //方法在一个指定字符串中执行一个搜索匹配
+    var result = reg1.exec(str);
+    console.log(result);
+    console.log(str.replace(reg1,"m"));
+
+    /*
+        \n 反向引用前面分组。n为从左向右第n个分组
+        () 为分组
+    */
+    var reg2=/(\d)a\1/gi;
+    // ======》
+    var reg3=/(\d)a(\d)/gi;
+
+    var str="2a5vjs6";
+    str.replace(reg2,"m");
+
+    /*
+        String.prototype
+
+        str.replace(reg,"替换内容");
+        str.match(正则表达式)
+            返回值是一个数组或者是null
+            [整个正则匹配到的内容，分组匹配到的内容,开始匹配位置的索引]
+        str.search(正则表达式)
+            在str中检索符合正则表达式规则的内容，检索到返回其
+            第一个位置
+    
+    RegExp.prototype
+
+        reg.rest(str)
+            验证字符串是否符合正则表达式规则，符合返回true，不符合返回false
+        reg.exec(str)
+            方法在一个指定字符串中执行一个搜索匹配
+
+    */
+    
+
+    /*验证压缩包文件格式*/
+    var reg=/(.*)\.(rar|zip|7zip|tgz)$/;
+    /*
+        .    任意一个字符
+        (.+) 压缩文件的名字
+        \.   转译表示字符 .
+        (rar|zip|7zip|tgz)从中任意取一个类型
+        a$ 以...结尾
+
+    */
+
+    var reg1= /^#[a-fA-F0-9]{6}$/
+    /*
+        ^表示开头
+        [^anc]表示匹配排除anc 
+        ^#表示以#开头
+        [a-fA-F0-9] 表示集合，从中任取一个字符，a-f A-F 0-9
+        {6} 表示之前的字符出现6次
+        $表示必须要以之前的字符结尾
+    */
+</script>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* div{
+            background:chartreuse;
+            margin: 10px 10px;
+        } */
+        #container{
+            height: 600px;
+            width: 400px;
+            margin: 50 50px;
+            border: 2px solid red;
+        }
+        img{
+            width: 300px;
+            height: 300px;
+        }
+        #btn{
+           width: 1000px;
+           margin: 0 auto; 
+        }
+    </style>
+</head>
+<!-- <body>
+    <input type="text" />
+    <br>
+    <input type="fill" />
+    <br>
+    <input type="button" />
+    <br>
+    <input type="submit" />
+    <br>
+    <input type="checkbox" />
+
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $(":text").css("background","blue");
+
+</script> -->
+
+<!-- <body>
+    <input type="button" value="绑定点击事件" id="btn">
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    /*
+        jquery包装集.事件方法(回调函数)
+    */
+    $("#btn").click(function(){
+        alert("按钮被点击了！");
+    })
+    $(":button").click(function(){
+        alert("按钮被点击了！");
+    })
+</script> -->
+
+<!-- <body>
+    <img src="https://wx4.sinaimg.cn/mw690/8bd04cf2gy1g33cqtn7r7j20yi0yijzt.jpg" alt="">
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $("img").mouseover(function(){
+        this.style.border = "2px solid red";
+        // $(this).css("border","2px soild red");
+    })
+</script> -->
+
+<!-- <body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $("div").mouseover(function(){
+        $(this).css("background","yellow");
+    }).mouseout(function(){
+        $(this).css("background","pink");
+    }).click(function(){
+        $(this).css("background","blue");
+    })
+</script> -->
+
+<!-- <body>
+    <tr>
+        <td>用户名：</td>
+        <td>
+            <input type="text" name="username" id="username">
+        </td>
+    </tr>
+    <tr>
+        <td>密码：</td>
+        <td>
+            <input type="password" name="pwd">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="button" value="登录">
+        </td>
+    </tr>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    /*
+        $(选择器).val(); 获取value值
+        $("html标记") 创建一个结点
+        $(选择器).append();向选中元素内部添加一个新元素
+        $(选择器).remove();将特定元素从页面中删除
+    */
+    $("#username").blur(function(){
+        var inputVal =$(this).val();//获取value值
+        var errorTip = $("<span class='error'>用户名不能为空</span>");//创建一个结点
+        if(inputVal==""){
+            alert(this);
+            $(this).parent().append(errorTip);
+        }else{
+            $(".error").remove();
+        }
+    })
+</script> -->
+
+<body>
+    <div id="container">
+        <img src="img0.jpg" alt="" id="img1">
+    </div>
+    <div id="btn">
+        <button id="after">after</button>
+    </div>
+</body>
+</html>

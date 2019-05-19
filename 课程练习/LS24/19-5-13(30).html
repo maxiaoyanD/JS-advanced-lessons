@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- jQurey -->
+    <table width='400' height='400' border='1' align="center">
+        <tr class="event">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="tb1">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+        </tr>
+        <tr class="event">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+        </tr>
+        <tr id="tb1">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+        </tr>
+    </table>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    /*
+        jqurey.min.js压缩版，一般用于生产环境
+        jquery.js 未压缩，一般用于开发环境
+    */
+    /*
+        $(jquery选择器)
+
+    */
+    // $("body").css("background","red");
+    /*
+        选择器:id选择器、类选择器、标签选择器、层级选择器
+        (后代选择器、子选择器)
+    */
+    $(".event").css("background","red");
+    $("#tb1.event").css("background","red");
+    $("#tb1 td").css("background","red");
+
+</script>
+</html>
