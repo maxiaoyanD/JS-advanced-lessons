@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .imgborder{
+            border:2px solid rebeccapurple;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: rebeccapurple;
+        }
+    </style>
+</head>
+<!-- <body>
+    $
+    <img src="d1.jpg" alt="" id='img1'>
+    <button id='btn'>改变属性</button>
+    <button id='btn1'>改变class</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    // # $("#") () {}
+    $("#btn").click(function(){
+        $("#img1").attr('src','d3.jpg');
+        $("#img1").attr('title','这是一张照片');
+        alert($("#img1").attr('title'));
+
+        $("#img1").attr('class','');
+        //移除特定属性
+        $("#img1").removeAttr('title');
+    })
+    $("#btn1").click(function(){ 
+        $("#img1").addClass('imgborder');
+        $("#img1").removeClass('imgborder');
+    })
+</script> -->
+<script>
+    // # $("#") () {}
+    /*
+        1、$("")  $(":eq()") $("td:odd")  $("td:even")  $("td:gt(index)") $("td:lt(index)") $(":text")
+        2、mouseover() mouseout() blur()  focus() click()
+        3、append() appendTo() before() insertbefore()  after() insertafter() prepend() perpendTo()
+        4、val() html() css() attr() addClass() removeClass()
+    */
+</script>
+
+<body>
+    <div></div>
+    <button id='slideup'>slideUp</button>
+    <button id='slidedown'>slideDown</button>
+    <button id='fadein'>fadeIn</button>
+    <button id='fadeout'>fadeOut</button>
+    <button id='animate'>animate</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    /*改变元素的高度来切换显示和隐藏*/
+     $("#slideup").click(function(){ 
+        $('div').slideUp(4000);
+     })
+     $("#slidedown").click(function(){ 
+        $('div').slideDown(4000);
+     })
+     /*改变元素的透明度来切换显示和隐藏*/
+     $("#fadein").click(function(){ 
+        $('div').fadeIn();
+     })
+     $("#fadeout").click(function(){ 
+        $('div').fadeOut();
+     })
+     $("#animate").click(function(){ 
+        $('div').animate({
+            'margin-left':'100px'
+        });
+     })
+</script>
+</html>
+
+
+
