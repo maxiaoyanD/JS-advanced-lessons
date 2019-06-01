@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /******数组的解构赋值********/
+    let [one,two,third]=[1,2,3];//先解析结构在进行赋值
+    console.log(third);//3
+
+    /*...理解为剩余运算符，其他元素匹配完成后剩余的元素*/
+    let[head,...tail]=[1,2,3,4];//...为剩余运算符
+    console.log(head,tail);//1 ,[2,3,4]
+
+    /*
+        左侧比右侧元素多的情况下，
+        未匹配到的变量为undefined
+        ...跟的变量未匹配到元素为[空数组]
+    */
+    let[d,e,...f]=['a'];
+    console.log(d,e,f);// a undefined []
+    /*********对象的解构赋值***********/
+    //根据键名匹配
+    let {bar,foo,other} = {foo:"fool",bar:"bar1"};
+    console.log(bar,foo,other);//bar1 foo1 undefined
+    /*
+        对象的解构赋值完全是键名匹配赋值;
+        如果是键值对情况，键只用于匹配，真正赋值给对应的值
+    */
+    let {bar,foo,other} = {foo:"fool",bar:"bar1",third:"other"};
+    console.log(bar,foo,other);//bar1 foo1 undefined
+
+    let{foo:baz}={foo:"aaa",bar:"bbb"};
+    console.log(baz);//aaa
+
+    /***********字符串解构赋值*************/
+    let str=new String("abcd");
+    let [a,b,c,d]=str;
+    console.log(a,b,c,d);
+    //等价于
+    let [e,f]='ef';
+    console.log(e,f);
+
+    //解构赋值的规则是：只要等号右侧的值不是对象，就先将其转换为对象，
+    //数组也是对象
+    let {toString:s1}=123;
+    /*number对象有toString方法*/
+    let num = new Number(5);
+    let {toString:s1}=num;
+    console.log(s1);
+
+    /***********参数解构赋值************/
+    function fn1({x=0,y=0}={}){
+        return [x,y];
+    }
+    console.log(fn1());//[0,0]
+    console.log(fn1({x:1,y:2}));//[1,2]
+
+    /*************交换变量***************/
+    let [x,y]=['a','b'];
+     [y,x]=[x,y];
+    console.log(x,y);//b a
+
+    function exapmle(){
+        return [1,2,3];
+    }
+    let [a,b,c]=exapmle();
+    console.log(a,b,c);
+
+    let json1 = {
+        "username":"zhangsan",
+        "courseList":["高等数学","大学英语"],
+        "age":20
+    }
+    /*
+        JSON MATH都是对象，没有构造函数
+        JSON.parse()
+    */
+    let jsonStr=JSON.stringify(json1);
+    console.log(jsonStr);
+    json1=JSON.parse(jsonStr);
+
+    let {username} = json1;
+    console.log(username);
+</script>
+</html>

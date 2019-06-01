@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //for of实现遍历
+    let str="abcdef";
+    for(let i of str){
+        console.log(i);
+    }
+    str.repeat(4);//"abcdefabcdefabcdefabcdef"
+
+    let reg1 = /xyz/gi;
+    let reg2 = new RegExp("xyz",'gi');
+    let reg2 = new RegExp(/xyz/gi);
+    let reg3 = new RegExp(/xyz/gi,'i');//有的不支持
+
+    /* 正则表达式对象.flags获取到正则表达式修饰符 */
+    console.log(reg1.flags);//gi
+
+    /* + */
+    /* sticky y修饰符 他会从上一次匹配成功的结束位置开始匹配*/
+    let str="aaa_aa_a";
+    let reg4 = /a+/g;
+    let reg5 = /a+/y;
+    console.log(reg4.exec(str));//aaa
+    console.log(reg4.exec(str));//aa
+    
+    console.log(reg5.exec(str));//aaa
+    //上一次匹配结果的索引位置
+    reg5.lastIndex;//3
+    console.log(reg5.exec(str));//null  ?????????
+    //可以根据 正则对象.sticky属性判断正则表达式是否设置了y属性
+    console.log(reg5.sticky);
+
+</script>
+</html>

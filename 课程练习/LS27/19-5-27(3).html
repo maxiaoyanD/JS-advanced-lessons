@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var username ="zhangsan";
+    if(true){
+        var username="lisi";
+    }
+    console.log(username);//lisi
+    //let声明的变量会拥有块级作用域 
+    //作用于只会在{}中
+    let username ="zhangsan";
+    if(true){
+        let username="lisi";
+    }
+    console.log(username);//zhangsan 
+    /*
+        var声明变量的方式，只有一个
+        全局变量i，所有的延迟执行都在共用一个i
+
+        let声明的方式，每次循环都会形成自己的一个独立作用域
+    */
+    for(let i = 0; i<3;i++){
+        setTimeout(function(){
+            console.log(new Date(),i);
+        },i*1000)
+    }
+
+    //const声明的变量不可修改
+    //定义变量时必须进行初始化，否则报错
+    //可以修改属性里面的值
+    const PI=3.1415926;
+    PI=3.14;//报错
+
+    const hh;//报错
+
+    const obj = {x:1,y:2};
+    obj.x=3;
+    console.log(obj);//x:3,y:2
+    //let、const声明变量不会进行变量提升，声明前不可用
+    //let不可重复定义变量 会报错
+    console.log(name);//报错
+    let name="hh";
+</script>
+</html>

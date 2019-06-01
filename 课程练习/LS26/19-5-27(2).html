@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    这是一个网页
+    <button id="btn">jq ajax</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+
+    /*
+        ajax可以以异步的方式实现前后端数据的交互
+    */
+
+    //前端通过发起ajax请求方式
+    //来服务器端获取数据
+    //请求方式有get请求和post请求
+
+    /*
+    $.get("./sever.php",function(res){
+        $("body").html(res);
+    })*/
+
+    /*
+        在前段页面实现jQuery ajax请求
+        ajax请求指明请求的后端程序的地址
+        后端程序接受请求，做出响应
+        前端接受后端程序的响应内容，并在前端使用
+
+        前后端文件必须都放在服务器上面。
+    */
+    /*ajax可以实现页面的局部刷新*/
+    $("#btn").click(function(){
+        $.ajax({
+            url:"./sever.php",
+            type:"get",
+            success:function(data){
+                console.log(data);
+            },
+            error:function(err){
+                console.log(err);
+            }
+        })
+    })
+
+
+</script>
+</html>
