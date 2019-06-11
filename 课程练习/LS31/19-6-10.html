@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // symbol也是基本数据类型
+    // symbol的值是独一无二的
+    let s1 = Symbol("s1");
+    let s2 = Symbol("s2");
+    let s3 = Symbol("s1");
+    console.log(s1 == s3);
+    //只要是symbol生成的变量是不相同的。Symbol生成的变量是唯一的。
+    /*
+        Symbol作为对象的属性名，永远不会重复
+        Symbol作为属性名时要加[]
+        对象[symbol]
+        {
+            [symbol]:属性值
+        }
+    */
+    let s1 = Symbol("s1");
+    let obj={};
+    obj[s1]="hello";
+    obj.s1 = "world";//对象.属性名就直接拿属性名的字符串当做名字来使用
+    console.log(obj[s1]);//hello
+    let obj1={
+        [s1]:"hhh"
+    }
+    console.log(obj1[s1]);//hhh
+
+    /*
+        Symbol.foo()首先是查看是否存在描述信息的Symbol变量
+        存在的话直接获取，不存在的话会创建一个Symbol
+    */
+    let s1 = Symbol("foo");
+    console.log(Symbol.for("foo") ==s1);//false
+    console.log(Symbol.for("foo") ==Symbol.for("foo"));
+
+    /*
+        Set会自动过滤掉重复值
+    */
+    let s1 = new Set([1,2,3,4,4,5,8,8]);
+    console.log(s1);
+    for(var i of s1){//for of进行遍历
+        console.log(i);
+    }
+    /*
+        Map
+    */
+    let m1 = new Map([
+        ["username","zhangsan"],
+        ["age",20],
+        ["sex","male"]
+    ]);
+    console.log(m1.size);
+    for(let i of m1){
+        console.log(i);
+    }
+    m1.set("weight","60kg");
+    console.log(m1.get("username"));
+    console.log(m1.has("sex"));
+    m1.delete("weight");
+    console.log(m1.keys());
+</script>
+</html>
