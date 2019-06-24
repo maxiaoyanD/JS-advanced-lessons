@@ -17,8 +17,8 @@
      * 2、判断对象的原型链上能否找到该构造函数的原型
      * 对象.__proto__.__proto__（长度不确定） == 构造函数.prototype
      */
-    console.log(Object instanceof Function);
-    console.log(Object.__proto__ == Function.prototype);
+    console.log(Object instanceof Function);//true
+    console.log(Object.__proto__ == Function.prototype);//true
 
     //任何对象instanceof Object都是true，因为Object是所有对象的原型
     console.log(Object instanceof Object);

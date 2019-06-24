@@ -29,13 +29,11 @@
     //判断能否在person的原型链上找到Object构造函数的prototype
     console.log(person instanceof Object);//true
    
-    /**一下有问题**/
     console.log(person.__proto__ == Object.prototype);
-    //person.__proto__ ===> Person.prototype
-    //person.__proto__.__proto__ ==> Person.prototype.__proto__
-    //Person.prototype.__proto__ ==> Object.prototype.__proto__
-    //console.log(Person.prototype.__proto__ == Object.__proto__)
-    /**以上待解决**/
+    console.log(person.__proto__ == Person.prototype);
+	person.__proto__ == Person.prototype //true
+    person.__proto__.__proto__ == Person.prototype.__proto__ //true
+    Person.prototype.__proto__ == Object.prototype//true
 
     /****************函数的属性**********************/
     //arguments获取函数调用时传入的实参，类数组结构
@@ -71,13 +69,13 @@
         console.log(this.objName);
     }
     objA.foo();//AAA
-    //方法.call(对象):切换对象
+    //对象.方法.call(对象):切换对象
     objA.foo.call(objB);//BBB
 
     function Per(username,age){
         this.username = username;
         this.age = age;
-        this,sayHi = function(){
+        this.sayHi = function(){
             console.log(this.username);
         }
     }
@@ -85,6 +83,7 @@
     //其具有一个指定的this值和分别提供的参数（参数的列表）
     function Student(username,age,sex){
         //方法.call()或方法.apply()方法会调用一次
+        console.log(this);
         Per.call(this,username,age);
         //这里的this传到Per中
         //Per.apply(this,[username,age])
@@ -92,6 +91,7 @@
     }
    // var per = new Per("zhangsan");
     var student = new Student("lisi",20,"女");
+    student.sayHi();
     console.log(student);
     //这里的username的赋值在Per中完成的
 
@@ -105,7 +105,7 @@
     }
     var objN = {"name":"nnn"};
     var foo2 = objM.foo.bind(objN);
-    foo2();
+    foo2();//nnn
 
     var obj = {x:30};
     function f1(){
