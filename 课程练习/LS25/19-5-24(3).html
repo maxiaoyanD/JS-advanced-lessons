@@ -74,11 +74,15 @@
     div4.addEventListener("click",function(e){
         //阻止冒泡捕获，可以不触发外层
         e.stopPropagation();
+
        //获取是否为冒泡，，是为true，不是为false
        console.log(e.bubbles);
+
        //是否应用了preventDefault()
        console.log(e.cancelable);
+
        //等效于 stopPropagation() true false
+       //从事件处理程序返回之前将其值设置为true可阻止事件的传播。
        console.log(e.cancelBubble);
 
        

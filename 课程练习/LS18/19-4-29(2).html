@@ -20,6 +20,8 @@
     var arr2 = arr1;
     arr1[0]=7;
     console.log(arr2);//7,5,9
+    arr2[1]=8;
+    console.log(arr1);
     //arr1和arr2指向相同，就像对象是一个引用型的
 
     var arr1 = [,1,,2];
@@ -45,7 +47,7 @@
     var product = table[2][4];
     console.log(product);
     /*
-        1、判断方法是静态方法还是原型仿佛
+        1、判断方法是静态方法还是原型方法
         2、确定这个方法是用来做什么的
             （1）是否会对原变量产生影响
             （2）最终的作用效果是什么样的

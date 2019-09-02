@@ -59,12 +59,14 @@
     console.log(str.match(reg));//
 
     /*
-        ^x匹配开始位置,只能匹配出一个
-        x$匹配结束位置。
+        ^x匹配 以x开始位置,只能匹配出第一个
+        x$匹配结束位置。只能匹配出最后一个
     */
     var reg1 = /^a[0-9]/gi;
-    var str1 = "a1 b2 c3 a4";
+    var reg2 = /[a-z]d$/gi;
+    var str1 = "a1 bd c3 a4 cd";
     console.log(str1.match(reg1));//a1
+    console.log(str1.match(reg2));
     /*
         reg.test(str)满足结果返回为true，不满足为false
         test定义在正则表达式上。
